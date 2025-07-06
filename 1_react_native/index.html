@@ -1,0 +1,53 @@
+<html>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+
+      function Header({ name }) {
+        return <h1>Hello, {name ? name : "react"}!</h1>;
+      }
+
+      function HomePage() {
+        const student = ["andre", "zelina", "evan"];
+        const [likes, setLikes] = React.useState(0);
+
+        function handleClick() {
+          setLikes(likes + 1);
+        }
+
+        function hancleUnClick() {
+          setLikes(likes - 1);
+        }
+
+        function handleReset() {
+          setLikes(0);
+        }
+        return (
+          <>
+            <Header name="Zyuu" />
+            <ul>
+              {student.map((student) => (
+                <li key={student}>{student}</li>
+              ))}
+            </ul>
+
+            <button onClick={hancleUnClick}>-</button>
+            <span>({likes})</span>
+            <button onClick={handleClick}>+</button>
+            <br />
+            <br />
+            <button onClick={handleReset}>Reset</button>
+          </>
+        );
+      }
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
